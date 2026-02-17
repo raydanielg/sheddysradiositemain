@@ -1,7 +1,7 @@
 # Sheddy's Radio — Website & Admin Panel
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/public/images/logo.png" width="140" alt="Sheddy's Radio Logo" />
+  <img src="public/images/logo.png" width="140" alt="Sheddy's Radio Logo" />
 </p>
 
 <p align="center">
@@ -15,10 +15,10 @@
 
 | Page | Preview |
 | --- | --- |
-| Home (Hero + Quick Play) | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/home.png" width="400" alt="Home" /> |
-| Floating Mini-Player | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/player.png" width="400" alt="Player" /> |
-| Admin Settings | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/admin-settings.png" width="400" alt="Admin" /> |
-| Profile | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/profile.png" width="400" alt="Profile" /> |
+| Home (Hero + Quick Play) | <img src="docs/screenshots/home.png" width="400" alt="Home" /> |
+| Floating Mini-Player | <img src="docs/screenshots/player.png" width="400" alt="Player" /> |
+| Admin Settings | <img src="docs/screenshots/admin-settings.png" width="400" alt="Admin" /> |
+| Profile | <img src="docs/screenshots/profile.png" width="400" alt="Profile" /> |
 
 ---
 
