@@ -24,33 +24,39 @@ export default function FloatingRadioPlayer({ streamUrl: streamUrlProp }) {
                 }
 
                 @keyframes srCardGlow {
-                    0% { background-position: 0% 50%; opacity: .22; }
-                    50% { background-position: 100% 50%; opacity: .30; }
-                    100% { background-position: 0% 50%; opacity: .22; }
+                    0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+                    50% { background-position: 100% 50%; filter: hue-rotate(15deg); }
+                    100% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+                }
+
+                @keyframes srFloating {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-4px); }
                 }
             `}</style>
 
-            <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4">
+            <div 
+                className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4"
+                style={state.isPlaying ? { animation: 'srFloating 3s ease-in-out infinite' } : undefined}
+            >
                 <div className="mx-auto w-full max-w-3xl">
                     <div
                         className={cn(
                             'relative overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-2xl shadow-black/10 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80',
-                            state.isPlaying ? 'shadow-primary/10' : null
+                            state.isPlaying ? 'shadow-primary/20 ring-1 ring-primary/20' : null
                         )}
                     >
                         <div
                             aria-hidden="true"
-                            className={cn(
-                                'pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500',
-                                state.isPlaying ? 'opacity-100' : 'opacity-0'
-                            )}
+                            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700"
                             style={
                                 state.isPlaying
                                     ? {
+                                          opacity: 0.4,
                                           background:
                                               'radial-gradient(800px circle at 20% 30%, rgba(99, 102, 241, 0.35), transparent 55%), radial-gradient(700px circle at 80% 70%, rgba(236, 72, 153, 0.22), transparent 55%), linear-gradient(120deg, rgba(59, 130, 246, 0.18), rgba(16, 185, 129, 0.12), rgba(168, 85, 247, 0.16))',
                                           backgroundSize: '200% 200%',
-                                          animation: 'srCardGlow 6.5s ease-in-out infinite',
+                                          animation: 'srCardGlow 8s ease-in-out infinite',
                                       }
                                     : undefined
                             }

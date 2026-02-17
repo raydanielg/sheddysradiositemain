@@ -1,7 +1,7 @@
 # Sheddy's Radio — Website & Admin Panel
 
 <p align="center">
-  <img src="public/images/logo.png" width="140" alt="Sheddy's Radio Logo" />
+  <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/public/images/logo.png" width="140" alt="Sheddy's Radio Logo" />
 </p>
 
 <p align="center">
@@ -13,14 +13,12 @@
 
 ## Screenshots / Preview
 
-Add screenshots to a folder like `docs/screenshots/` then update links below.
-
 | Page | Preview |
 | --- | --- |
-| Home (Hero + Quick Play) | `docs/screenshots/home.png` |
-| Floating Mini-Player | `docs/screenshots/player.png` |
-| Admin Settings (Stream URL test) | `docs/screenshots/admin-settings.png` |
-| Profile (Avatar Upload) | `docs/screenshots/profile.png` |
+| Home (Hero + Quick Play) | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/home.png" width="400" alt="Home" /> |
+| Floating Mini-Player | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/player.png" width="400" alt="Player" /> |
+| Admin Settings | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/admin-settings.png" width="400" alt="Admin" /> |
+| Profile | <img src="https://raw.githubusercontent.com/raydanielg/sheddysradiositemain/main/docs/screenshots/profile.png" width="400" alt="Profile" /> |
 
 ---
 
