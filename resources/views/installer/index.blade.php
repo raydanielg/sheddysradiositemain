@@ -22,7 +22,6 @@
         </div>
 
         <form id="installForm" class="p-8 space-y-6">
-            @csrf
             <div class="space-y-4">
                 <h2 class="text-lg font-bold flex items-center gap-2 text-slate-800">
                     <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 text-xs font-black">1</span>

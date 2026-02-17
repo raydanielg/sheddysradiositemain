@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class InstallerController extends Controller
@@ -12,8 +11,9 @@ class InstallerController extends Controller
     public function index()
     {
         if (config('app.installed')) {
-            return redirect('/')->with('error', 'Application is already installed.');
+            return redirect('/');
         }
+
         return view('installer.index');
     }
 
@@ -29,9 +29,14 @@ class InstallerController extends Controller
         ]);
 
         try {
+            if (empty(config('app.key'))) {
+                Artisan::call('key:generate', ['--force' => true]);
+            }
+
             // 1. Update .env file
             $this->updateEnv([
                 'APP_NAME' => '"' . $request->app_name . '"',
+                'APP_URL' => '"' . url('/') . '"',
                 'DB_HOST' => $request->db_host,
                 'DB_PORT' => $request->db_port,
                 'DB_DATABASE' => $request->db_database,
@@ -42,6 +47,20 @@ class InstallerController extends Controller
 
             // 2. Clear config cache to use new env
             Artisan::call('config:clear');
+
+            config()->set('database.default', env('DB_CONNECTION', 'mysql'));
+            config()->set('database.connections.mysql.host', $request->db_host);
+            config()->set('database.connections.mysql.port', (int) $request->db_port);
+            config()->set('database.connections.mysql.database', $request->db_database);
+            config()->set('database.connections.mysql.username', $request->db_username);
+            config()->set('database.connections.mysql.password', $request->db_password ?? '');
+
+            try {
+                \Illuminate\Support\Facades\DB::purge();
+                \Illuminate\Support\Facades\DB::reconnect();
+            } catch (\Throwable $e) {
+                // ignore - migrations will surface connection errors clearly
+            }
 
             // 3. Run Migrations & Seeders
             Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true]);

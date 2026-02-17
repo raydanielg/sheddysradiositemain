@@ -5,7 +5,6 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminContentController;
 use App\Http\Controllers\AdminSettingsController;
 use App\Http\Controllers\PublicPageController;
-use App\Http\Controllers\InstallerController;
 use App\Http\Controllers\RadioSettingsController;
 use App\Http\Controllers\SubscriptionController;
 use App\Models\Highlight;
@@ -26,9 +25,6 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/install', [InstallerController::class, 'index'])->name('installer.index');
-Route::post('/install', [InstallerController::class, 'install'])->name('installer.install');
 
 Route::get('/', function () {
     $settings = SiteSetting::query()->first();
