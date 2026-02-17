@@ -177,5 +177,8 @@ php artisan storage:link
 
 ## License
 
-Private / internal project unless you decide otherwise.
+This project is open-sourced software licensed under the **MIT license**.
+Developed and maintained by **Zerixa Technologies**.
+
+Copyright (c) 2026 Zerixa Technologies.
 
