@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminContentController;
 use App\Http\Controllers\AdminSettingsController;
 use App\Http\Controllers\PublicPageController;
+use App\Http\Controllers\InstallerController;
 use App\Http\Controllers\RadioSettingsController;
 use App\Http\Controllers\SubscriptionController;
 use App\Models\Highlight;
@@ -15,6 +16,19 @@ use App\Models\Blog;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/install', [InstallerController::class, 'index'])->name('installer.index');
+Route::post('/install', [InstallerController::class, 'install'])->name('installer.install');
 
 Route::get('/', function () {
     $settings = SiteSetting::query()->first();
