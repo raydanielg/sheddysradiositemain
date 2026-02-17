@@ -1,0 +1,17 @@
+import{u as d,r,j as e}from"./app-Yo1wyWR6.js";import{g as c}from"./radioPlayer-D1uJMMe3.js";function i(...s){return s.filter(Boolean).join(" ")}function x({streamUrl:s}){const l=d().props.site_settings?.stream_url,n=s||l||null,t=r.useMemo(()=>c(),[]),[a,o]=r.useState(()=>t.getState());return r.useEffect(()=>t.subscribe(o),[t]),e.jsxs(e.Fragment,{children:[e.jsx("style",{children:`
+                @keyframes srBlink {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.25; }
+                }
+
+                @keyframes srCardGlow {
+                    0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+                    50% { background-position: 100% 50%; filter: hue-rotate(15deg); }
+                    100% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+                }
+
+                @keyframes srFloating {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-4px); }
+                }
+            `}),e.jsx("div",{className:"fixed inset-x-0 bottom-0 z-50 px-4 pb-4",style:a.isPlaying?{animation:"srFloating 3s ease-in-out infinite"}:void 0,children:e.jsxs("div",{className:"mx-auto w-full max-w-3xl",children:[e.jsxs("div",{className:i("relative overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-2xl shadow-black/10 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80",a.isPlaying?"shadow-primary/20 ring-1 ring-primary/20":null),children:[e.jsx("div",{"aria-hidden":"true",className:"pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700",style:a.isPlaying?{opacity:.4,background:"radial-gradient(800px circle at 20% 30%, rgba(99, 102, 241, 0.35), transparent 55%), radial-gradient(700px circle at 80% 70%, rgba(236, 72, 153, 0.22), transparent 55%), linear-gradient(120deg, rgba(59, 130, 246, 0.18), rgba(16, 185, 129, 0.12), rgba(168, 85, 247, 0.16))",backgroundSize:"200% 200%",animation:"srCardGlow 8s ease-in-out infinite"}:void 0}),e.jsxs("div",{className:"flex items-center gap-3 px-4 py-3 sm:px-5",children:[e.jsx("button",{type:"button",onClick:()=>t.toggle(n,{title:"Sheddy's New Look Radio",subtitle:"Live Stream"}),className:i("grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl text-white shadow-lg transition active:scale-95",a.isPlaying?"bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200":"bg-primary hover:bg-primary-700"),"aria-label":a.isPlaying?"Pause":"Play",children:a.isPlaying?e.jsx("svg",{viewBox:"0 0 20 20",fill:"currentColor",className:"h-5 w-5",children:e.jsx("path",{d:"M6 5h3v10H6V5Zm5 0h3v10h-3V5Z"})}):e.jsx("svg",{viewBox:"0 0 20 20",fill:"currentColor",className:"h-5 w-5",children:e.jsx("path",{d:"M7 5.5v9l8-4.5-8-4.5Z"})})}),e.jsxs("div",{className:"min-w-0 flex-1",children:[e.jsxs("div",{className:"flex items-center gap-2",children:[e.jsx("div",{className:i("h-2.5 w-2.5 rounded-full",a.isPlaying?"bg-primary":"bg-slate-300 dark:bg-slate-700"),style:a.isPlaying?{animation:"srBlink 1.1s ease-in-out infinite"}:void 0}),e.jsxs("div",{className:"text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400",children:["Live Stream",a.isBuffering?" • Loading":""]})]}),a.error?e.jsx("div",{className:"mt-1 text-xs font-semibold text-red-600",children:a.error}):null]})]})]}),e.jsx("div",{className:"h-[env(safe-area-inset-bottom)]"})]})})]})}export{x as F};
