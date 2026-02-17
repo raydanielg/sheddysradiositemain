@@ -30,7 +30,10 @@ class DatabaseSeeder extends Seeder
 
         User::query()->updateOrCreate(
             ['email' => 'test@example.com'],
-            ['name' => 'Test User'],
+            [
+                'name' => 'Test User',
+                'password' => Hash::make('password'),
+            ],
         );
 
         $this->call([
