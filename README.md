@@ -1,66 +1,183 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sheddy's Radio — Website & Admin Panel
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/images/logo.png" width="140" alt="Sheddy's Radio Logo" />
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>Modern radio station website</strong> built with Laravel + Inertia (React) + Tailwind.
+  Includes a persistent floating mini-player, blog pages, program schedule, contact forms, and an admin dashboard.
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Screenshots / Preview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Add screenshots to a folder like `docs/screenshots/` then update links below.
 
-## Learning Laravel
+| Page | Preview |
+| --- | --- |
+| Home (Hero + Quick Play) | `docs/screenshots/home.png` |
+| Floating Mini-Player | `docs/screenshots/player.png` |
+| Admin Settings (Stream URL test) | `docs/screenshots/admin-settings.png` |
+| Profile (Avatar Upload) | `docs/screenshots/profile.png` |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Key Features
 
-## Laravel Sponsors
+- **Floating Live Stream mini-player**
+  - Persistent across public pages
+  - Clean UI: play/pause + blinking live indicator
+  - Subtle animated background on the player card while playing
+- **Click any homepage card to play**
+  - Hero / Highlights / Schedule / Blog cards start the radio instantly
+- **Admin settings for stream URL**
+  - Uses a single source of truth: `site_settings.stream_url`
+  - Real-time test play button in admin
+- **Profile avatar upload**
+  - Upload + preview + save
+  - Avatar also appears in admin header
+- **Blog**
+  - Index + show pages with sharing
+- **Modern UI**
+  - TailwindCSS, dark mode support
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Tech Stack
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Backend**
+  - Laravel (PHP)
+  - Eloquent ORM
+  - Form Request validation
+- **Frontend**
+  - Inertia.js + React
+  - Tailwind CSS
+  - Headless UI (where used)
+- **Build**
+  - Vite
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Requirements
 
-## Code of Conduct
+- PHP (8.1+ recommended)
+- Composer
+- Node.js (18+ recommended)
+- NPM
+- A database (MySQL recommended)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Local Setup (Windows / General)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 1) Install dependencies
+
+```bash
+composer install
+npm install
+```
+
+### 2) Configure environment
+
+Copy `.env.example` to `.env` and set your DB settings.
+
+```bash
+php artisan key:generate
+```
+
+### 3) Database
+
+```bash
+php artisan migrate
+```
+
+If you have seeders, run:
+
+```bash
+php artisan db:seed
+```
+
+### 4) Run the app
+
+Run Laravel:
+
+```bash
+php artisan serve
+```
+
+Run Vite:
+
+```bash
+npm run dev
+```
+
+---
+
+## Production Build
+
+```bash
+npm run build
+```
+
+---
+
+## Admin Login (Default)
+
+Use these credentials (change them on first deploy):
+
+- **Email**: `admin@sheddysradio.com`
+- **Password**: `admin12345`
+
+---
+
+## Configuration Notes
+
+### Stream URL
+
+- The live stream URL is controlled by:
+  - `site_settings.stream_url`
+- Set it in the Admin Settings page.
+- The floating mini-player and homepage “click-to-play” use the same stream URL.
+
+### Storage (Avatars)
+
+If you use public storage (recommended):
+
+```bash
+php artisan storage:link
+```
+
+---
+
+## Common Troubleshooting
+
+- **No audio / stream fails**
+  - Confirm the stream URL is reachable
+  - Try the Admin “Test Play” button
+- **Images not showing after deploy**
+  - Ensure `storage:link` is created
+  - Confirm file permissions for `storage/` and `public/`
+- **Vite assets missing**
+  - Run `npm run build` on production
+
+---
+
+## Project Structure (Quick Map)
+
+- `resources/js/Components/FloatingRadioPlayer.jsx`
+  - Global floating player UI
+- `resources/js/utils/radioPlayer.js`
+  - Singleton audio player state manager
+- `resources/js/Pages/Home/sections/*`
+  - Homepage cards with click-to-play
+- `resources/js/Pages/Admin/Settings.jsx`
+  - Stream URL management + test play
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Private / internal project unless you decide otherwise.
 
-
-
-Kisha login tumia:
-
-admin@sheddysradio.com
-admin12345
