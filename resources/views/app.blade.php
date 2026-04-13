@@ -35,6 +35,14 @@
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#ef4444">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="Sheddy's Radio">
+        <link rel="apple-touch-icon" href="/logo1.jpeg">
+
         <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=SN+Pro:ital,wght@0,200..900;1,200..900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
         </style>
@@ -47,5 +55,27 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+
+        <!-- Service Worker Registration -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then((registration) => {
+                            console.log('SW registered:', registration);
+                        })
+                        .catch((error) => {
+                            console.log('SW registration failed:', error);
+                        });
+                });
+            }
+
+            // Request notification permission on load
+            if ('Notification' in window) {
+                Notification.requestPermission().then((permission) => {
+                    console.log('Notification permission:', permission);
+                });
+            }
+        </script>
     </body>
 </html>

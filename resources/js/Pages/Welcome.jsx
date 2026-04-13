@@ -1,6 +1,7 @@
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
 import { Play, Pause, Radio, Music, Mic, Phone, Calendar, Download } from 'lucide-react';
+import PWAInstallPrompt from '@/Components/PWAInstallPrompt';
 
 export default function Welcome({ auth }) {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -342,6 +343,9 @@ export default function Welcome({ auth }) {
         </div>
     </div>
 </footer>
+
+{/* PWA Install Prompt */}
+<PWAInstallPrompt />
 
 {/* Bootstrap JS */}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
