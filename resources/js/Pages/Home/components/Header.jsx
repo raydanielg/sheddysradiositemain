@@ -72,75 +72,104 @@ export default function Header({ auth }) {
                         <button
                             type="button"
                             onClick={() => setMobileMenuOpen((v) => !v)}
-                            className="inline-flex items-center p-2 ml-1 text-sm text-slate-500 rounded-lg lg:hidden hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200 dark:text-slate-400 dark:hover:bg-slate-800 dark:focus:ring-slate-700"
+                            className="inline-flex items-center justify-center w-12 h-12 ml-2 text-sm text-slate-600 rounded-xl lg:hidden hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-primary dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"
                             aria-controls="mobile-menu-2"
                             aria-expanded={mobileMenuOpen}
+                            aria-label="Toggle menu"
+                            style={{ touchAction: 'manipulation' }}
                         >
                             <span className="sr-only">Open main menu</span>
                             <svg
-                                className={(mobileMenuOpen ? 'hidden ' : '') + 'w-6 h-6'}
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
+                                className={(mobileMenuOpen ? 'hidden ' : '') + 'w-7 h-7'}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    fillRule="evenodd"
-                                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                    clipRule="evenodd"
-                                ></path>
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M4 6h16M4 12h16M4 18h16"
+                                />
                             </svg>
                             <svg
-                                className={(mobileMenuOpen ? '' : 'hidden ') + 'w-6 h-6'}
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
+                                className={(mobileMenuOpen ? '' : 'hidden ') + 'w-7 h-7'}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    fillRule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                ></path>
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
                             </svg>
                         </button>
                     </div>
 
                     <div
-                        className={(mobileMenuOpen ? '' : 'hidden ') + 'justify-between items-center w-full lg:flex lg:w-auto lg:order-1'}
+                        className={(mobileMenuOpen ? 'block ' : 'hidden ') + 'w-full lg:block lg:w-auto lg:order-1 transition-all duration-300 ease-in-out'}
                         id="mobile-menu-2"
                     >
-                        <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                        <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-2 lg:mt-0">
                             <li>
                                 <Link
                                     href="/"
-                                    className="block py-2 pr-4 pl-3 text-white rounded bg-primary lg:bg-transparent lg:text-primary lg:p-0 dark:text-white"
-                                    aria-current="page"
+                                    className="block py-4 px-4 text-lg lg:text-base text-slate-700 rounded-lg hover:bg-slate-50 lg:hover:bg-transparent lg:hover:text-primary lg:p-2 lg:rounded-lg dark:text-slate-300 lg:dark:hover:text-white dark:hover:bg-slate-800 transition-colors"
+                                    style={{ touchAction: 'manipulation', minHeight: '48px' }}
                                 >
-                                    Home
+                                    <span className="flex items-center gap-2">
+                                        <svg className="w-5 h-5 lg:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                        </svg>
+                                        Home
+                                    </span>
                                 </Link>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     href="/blogs"
-                                    className="block py-2 pr-4 pl-3 text-slate-700 border-b border-slate-100 hover:bg-slate-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary lg:p-0 dark:text-slate-300 lg:dark:hover:text-white dark:hover:bg-slate-800 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-slate-700"
+                                    className="block py-4 px-4 text-lg lg:text-base text-slate-700 rounded-lg hover:bg-slate-50 lg:hover:bg-transparent lg:hover:text-primary lg:p-2 lg:rounded-lg dark:text-slate-300 lg:dark:hover:text-white dark:hover:bg-slate-800 transition-colors"
+                                    style={{ touchAction: 'manipulation', minHeight: '48px' }}
                                 >
-                                    Blogs
-                                </a>
+                                    <span className="flex items-center gap-2">
+                                        <svg className="w-5 h-5 lg:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2" />
+                                        </svg>
+                                        Blogs
+                                    </span>
+                                </Link>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     href="/about"
-                                    className="block py-2 pr-4 pl-3 text-slate-700 border-b border-slate-100 hover:bg-slate-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary lg:p-0 dark:text-slate-300 lg:dark:hover:text-white dark:hover:bg-slate-800 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-slate-700"
+                                    className="block py-4 px-4 text-lg lg:text-base text-slate-700 rounded-lg hover:bg-slate-50 lg:hover:bg-transparent lg:hover:text-primary lg:p-2 lg:rounded-lg dark:text-slate-300 lg:dark:hover:text-white dark:hover:bg-slate-800 transition-colors"
+                                    style={{ touchAction: 'manipulation', minHeight: '48px' }}
                                 >
-                                    About Us
-                                </a>
+                                    <span className="flex items-center gap-2">
+                                        <svg className="w-5 h-5 lg:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        About Us
+                                    </span>
+                                </Link>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     href="/contact"
-                                    className="block py-2 pr-4 pl-3 text-slate-700 border-b border-slate-100 hover:bg-slate-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary lg:p-0 dark:text-slate-300 lg:dark:hover:text-white dark:hover:bg-slate-800 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-slate-700"
+                                    className="block py-4 px-4 text-lg lg:text-base text-slate-700 rounded-lg hover:bg-slate-50 lg:hover:bg-transparent lg:hover:text-primary lg:p-2 lg:rounded-lg dark:text-slate-300 lg:dark:hover:text-white dark:hover:bg-slate-800 transition-colors"
+                                    style={{ touchAction: 'manipulation', minHeight: '48px' }}
                                 >
-                                    Contact Us
-                                </a>
+                                    <span className="flex items-center gap-2">
+                                        <svg className="w-5 h-5 lg:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                        </svg>
+                                        Contact Us
+                                    </span>
+                                </Link>
                             </li>
                         </ul>
                     </div>

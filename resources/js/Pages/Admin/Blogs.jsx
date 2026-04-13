@@ -111,11 +111,11 @@ export default function Blogs({ items }) {
         }
 
         if (editing?.id) {
-            form.post(route('admin.blogs.update', editing.id), {
-                _method: 'put',
-                forceFormData: true,
-                onSuccess: () => closeModal(),
-            });
+            form.transform((data) => ({ ...data, _method: 'put' }))
+                .post(route('admin.blogs.update', editing.id), {
+                    forceFormData: true,
+                    onSuccess: () => closeModal(),
+                });
         }
     }
 

@@ -1,20 +1,9 @@
-import Checkbox from '@/Components/Checkbox';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 export default function Login({ status, canResetPassword }) {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        const t = window.setTimeout(() => setMounted(true), 40);
-        return () => window.clearTimeout(t);
-    }, []);
-
+    const [showPassword, setShowPassword] = useState(false);
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -23,7 +12,6 @@ export default function Login({ status, canResetPassword }) {
 
     const submit = (e) => {
         e.preventDefault();
-
         post(route('login'), {
             onFinish: () => reset('password'),
         });
@@ -31,167 +19,205 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <>
-            <Head title="Log in" />
+            <Head title="Admin Login" />
+            <div className="min-h-screen flex">
+                {/* Left Side - Branding Panel */}
+                <div className="hidden lg:flex lg:w-1/2 xl:w-5/12 flex-col justify-center px-12 xl:px-16" 
+                     style={{ backgroundColor: '#0c2340' }}>
+                    <div className="max-w-sm">
+                        {/* Logo */}
+                        <div className="flex items-center justify-center mb-6">
+                            <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center border-2 border-white/20">
+                                <img
+                                    src="/logo1.jpeg"
+                                    alt="Sheddy's Radio"
+                                    className="w-16 h-16 rounded-full object-cover"
+                                />
+                            </div>
+                        </div>
+                        
+                        {/* Brand Name */}
+                        <h1 className="text-white text-2xl font-bold text-center mb-2">
+                            Sheddy's Radio
+                        </h1>
+                        <p className="text-white/60 text-sm text-center mb-8 uppercase tracking-wider">
+                            Admin Portal
+                        </p>
+                        
+                        {/* Divider */}
+                        <div className="w-12 h-0.5 bg-white/30 mx-auto mb-8"></div>
+                        
+                        {/* Description */}
+                        <p className="text-white/70 text-sm text-center leading-relaxed">
+                            Sign in to continue managing your radio station content, schedules, and settings.
+                        </p>
+                        
+                        {/* Copyright */}
+                        <div className="mt-auto pt-16">
+                            <p className="text-white/40 text-xs text-center">
+                                © {new Date().getFullYear()} Sheddy's Radio
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-            <div className="min-h-screen bg-slate-100 dark:bg-slate-950">
-                <div className="grid min-h-screen w-full grid-cols-1 lg:grid-cols-2">
-                    <div className="flex items-center justify-center bg-slate-200/60 px-6 py-10 dark:bg-slate-950 sm:py-12">
-                        <div className="w-full max-w-md">
-                            <Link href="/" className="inline-flex items-center gap-3">
-                                <div className="h-12 w-12 overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
-                                    <img
-                                        src="/logo1.jpeg"
-                                        alt="Sheddy's Radio logo"
-                                        className="h-full w-full object-cover"
-                                        loading="eager"
-                                    />
+                {/* Right Side - Login Form */}
+                <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-24 bg-gray-100">
+                    <div className="w-full max-w-md mx-auto">
+                        {/* Mobile Logo */}
+                        <div className="lg:hidden flex flex-col items-center mb-8">
+                            <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center mb-4">
+                                <img
+                                    src="/logo1.jpeg"
+                                    alt="Sheddy's Radio"
+                                    className="w-12 h-12 rounded-full object-cover"
+                                />
+                            </div>
+                            <h1 className="text-xl font-bold text-gray-800">Sheddy's Radio</h1>
+                        </div>
+
+                        {/* Form Card */}
+                        <div className="bg-white rounded-lg shadow-md p-8">
+                            <div className="mb-6">
+                                <h2 className="text-xl font-semibold text-gray-800">Welcome back</h2>
+                                <p className="text-gray-500 text-sm mt-1">Sign in to your account</p>
+                            </div>
+
+                            {status && (
+                                <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md text-sm text-green-700">
+                                    {status}
                                 </div>
+                            )}
+
+                            <form onSubmit={submit} className="space-y-5">
+                                {/* Email Field */}
                                 <div>
-                                    <div className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white">
-                                        Sheddy's Radio
-                                    </div>
-                                    <div className="text-xs font-semibold tracking-wide text-slate-500 dark:text-slate-400">
-                                        Admin Portal
-                                    </div>
-                                </div>
-                            </Link>
-
-                            <div className="mt-6 rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
-                                <div className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                                    Welcome back
-                                </div>
-                                <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                                    Sign in to manage schedules, blogs, and streaming settings.
-                                </div>
-
-                                {status && (
-                                    <div className="mt-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800 dark:border-green-900/40 dark:bg-green-900/20 dark:text-green-200">
-                                        {status}
-                                    </div>
-                                )}
-
-                                <form onSubmit={submit} className="mt-6">
-                                    <div>
-                                        <InputLabel htmlFor="email" value="Email" />
-
-                                        <TextInput
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Email Address <span className="text-red-500">*</span>
+                                    </label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <Mail className="h-4 w-4 text-gray-400" />
+                                        </div>
+                                        <input
                                             id="email"
                                             type="email"
                                             name="email"
                                             value={data.email}
-                                            className="mt-2 block w-full"
+                                            className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                                            placeholder="Enter your email"
                                             autoComplete="username"
-                                            isFocused={true}
+                                            autoFocus
                                             onChange={(e) => setData('email', e.target.value)}
                                         />
-
-                                    <InputError message={errors.email} className="mt-2" />
+                                    </div>
+                                    {errors.email && (
+                                        <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+                                    )}
                                 </div>
 
-                                <div className="mt-4">
-                                    <InputLabel htmlFor="password" value="Password" />
-
-                                    <TextInput
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        value={data.password}
-                                        className="mt-2 block w-full"
-                                        autoComplete="current-password"
-                                        onChange={(e) => setData('password', e.target.value)}
-                                    />
-
-                                    <InputError message={errors.password} className="mt-2" />
+                                {/* Password Field */}
+                                <div>
+                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Password <span className="text-red-500">*</span>
+                                    </label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <Lock className="h-4 w-4 text-gray-400" />
+                                        </div>
+                                        <input
+                                            id="password"
+                                            type={showPassword ? 'text' : 'password'}
+                                            name="password"
+                                            value={data.password}
+                                            className="block w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                                            placeholder="Enter your password"
+                                            autoComplete="current-password"
+                                            onChange={(e) => setData('password', e.target.value)}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? (
+                                                <EyeOff className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+                                            ) : (
+                                                <Eye className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+                                            )}
+                                        </button>
+                                    </div>
+                                    {errors.password && (
+                                        <p className="mt-1 text-xs text-red-600">{errors.password}</p>
+                                    )}
                                 </div>
 
-                                <div className="mt-4 flex items-center justify-between">
+                                {/* Remember & Forgot */}
+                                <div className="flex items-center justify-between">
                                     <label className="flex items-center">
-                                        <Checkbox
+                                        <input
+                                            type="checkbox"
                                             name="remember"
                                             checked={data.remember}
                                             onChange={(e) => setData('remember', e.target.checked)}
+                                            className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                                         />
-                                        <span className="ms-2 text-sm text-slate-600 dark:text-slate-300">
-                                            Remember me
-                                        </span>
+                                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
                                     </label>
-
-                                    {canResetPassword ? (
+                                    {canResetPassword && (
                                         <Link
                                             href={route('password.request')}
-                                            className="text-sm font-semibold text-primary hover:text-primary-700"
+                                            className="text-sm text-blue-600 hover:text-blue-800 font-medium"
                                         >
                                             Forgot password?
                                         </Link>
-                                    ) : null}
+                                    )}
                                 </div>
 
-                                <div className="mt-6">
-                                    <PrimaryButton className="w-full justify-center" disabled={processing}>
-                                        Log in
-                                    </PrimaryButton>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                                {/* Submit Button */}
+                                <button
+                                    type="submit"
+                                    disabled={processing}
+                                    className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                >
+                                    {processing ? 'Signing in...' : 'Sign in'}
+                                </button>
+                            </form>
 
-                    <div className="relative order-last overflow-hidden lg:order-none lg:min-h-screen">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary-700 via-primary to-rose-600" />
-                        <div className="absolute inset-0 opacity-20 [background:radial-gradient(circle_at_top,white,transparent_55%)]" />
-
-                        <div className="relative flex min-h-[260px] items-center px-6 py-12 lg:min-h-full lg:px-12">
-                            <div className="max-w-lg text-white">
-                                <div
-                                    className={
-                                        'text-xs font-bold tracking-widest text-white/80 transition-all duration-700 ' +
-                                        (mounted ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0')
-                                    }
-                                >
-                                    SHEDDY'S RADIO ADMIN
-                                </div>
-                                <div
-                                    className={
-                                        'mt-4 text-3xl font-extrabold leading-tight transition-all duration-700 sm:text-4xl ' +
-                                        (mounted ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0')
-                                    }
-                                    style={{ transitionDelay: '90ms' }}
-                                >
-                                    Dhibiti vipindi, blogs,
-                                    <br />
-                                    na streaming settings.
-                                </div>
-                                <div
-                                    className={
-                                        'mt-5 text-sm leading-relaxed text-white/85 transition-all duration-700 ' +
-                                        (mounted ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0')
-                                    }
-                                    style={{ transitionDelay: '160ms' }}
-                                >
-                                    Mfumo huu ni wa admin pekee. Hakikisha unatumia taarifa sahihi za kuingia.
-                                </div>
-
-                                <div
-                                    className={
-                                        'mt-8 grid gap-4 text-sm text-white/90 transition-all duration-700 ' +
-                                        (mounted ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0')
-                                    }
-                                    style={{ transitionDelay: '240ms' }}
-                                >
-                                    <div className="rounded-xl bg-white/10 px-4 py-3 ring-1 ring-white/15 backdrop-blur">
-                                        <div className="font-bold">Salama</div>
-                                        <div className="mt-1 text-white/80">Access imewekewa ulinzi—admin tu.</div>
-                                    </div>
-                                    <div className="rounded-xl bg-white/10 px-4 py-3 ring-1 ring-white/15 backdrop-blur">
-                                        <div className="font-bold">Haraka</div>
-                                        <div className="mt-1 text-white/80">Sasisha content na ratiba kwa urahisi.</div>
-                                    </div>
-                                </div>
+                            {/* Help Link */}
+                            <div className="mt-6 text-center">
+                                <p className="text-xs text-gray-500">
+                                    Need help? Contact us at{' '}
+                                    <a href="mailto:info@sheddysradio.com" className="text-blue-600 hover:text-blue-800">
+                                        info@sheddysradio.com
+                                    </a>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Poppins Font Styles */}
+            <style>{`
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+                * {
+                    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+                    font-weight: 700 !important;
+                    letter-spacing: -0.02em !important;
+                }
+                input, button, label, p, span, div, a {
+                    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+                }
+                button {
+                    font-weight: 600 !important;
+                    letter-spacing: 0.5px !important;
+                }
+            `}</style>
         </>
     );
 }
