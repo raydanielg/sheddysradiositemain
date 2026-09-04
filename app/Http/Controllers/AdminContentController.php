@@ -268,6 +268,10 @@ class AdminContentController extends Controller
 
     public function storeBlog(Request $request): RedirectResponse
     {
+        if ($request->has('published_at') && $request->input('published_at') === '') {
+            $request->merge(['published_at' => null]);
+        }
+
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:140'],
             'excerpt' => ['nullable', 'string', 'max:500'],
@@ -309,6 +313,10 @@ class AdminContentController extends Controller
 
     public function updateBlog(Request $request, Blog $blog): RedirectResponse
     {
+        if ($request->has('published_at') && $request->input('published_at') === '') {
+            $request->merge(['published_at' => null]);
+        }
+
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:140'],
             'excerpt' => ['nullable', 'string', 'max:500'],

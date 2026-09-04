@@ -132,8 +132,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/presenters/{presenter}', [AdminContentController::class, 'destroyPresenter'])->name('admin.presenters.destroy');
     Route::get('/admin/blogs', [AdminContentController::class, 'blogs'])->name('admin.blogs');
     Route::post('/admin/blogs', [AdminContentController::class, 'storeBlog'])->name('admin.blogs.store');
-    Route::put('/admin/blogs/{blog}', [AdminContentController::class, 'updateBlog'])->name('admin.blogs.update');
-    Route::delete('/admin/blogs/{blog}', [AdminContentController::class, 'destroyBlog'])->name('admin.blogs.destroy');
+    Route::put('/admin/blogs/{blog:id}', [AdminContentController::class, 'updateBlog'])->name('admin.blogs.update');
+    Route::delete('/admin/blogs/{blog:id}', [AdminContentController::class, 'destroyBlog'])->name('admin.blogs.destroy');
     Route::get('/admin/pages', [AdminContentController::class, 'pages'])->name('admin.pages');
     Route::post('/admin/pages', [AdminContentController::class, 'storePage'])->name('admin.pages.store');
     Route::put('/admin/pages/{page}', [AdminContentController::class, 'updatePage'])->name('admin.pages.update');

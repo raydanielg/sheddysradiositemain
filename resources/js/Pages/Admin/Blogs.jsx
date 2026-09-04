@@ -102,16 +102,24 @@ export default function Blogs({ items }) {
     function submit(e) {
         e.preventDefault();
 
+        const transform = (data) => ({
+            ...data,
+            _method: mode === 'edit' ? 'put' : undefined,
+            is_active: data.is_active ? 1 : 0,
+            sort_order: Number(data.sort_order) || 0,
+        });
+
         if (mode === 'create') {
-            form.post(route('admin.blogs.store'), {
-                forceFormData: true,
-                onSuccess: () => closeModal(),
-            });
+            form.transform(transform)
+                .post(route('admin.blogs.store'), {
+                    forceFormData: true,
+                    onSuccess: () => closeModal(),
+                });
             return;
         }
 
         if (editing?.id) {
-            form.transform((data) => ({ ...data, _method: 'put' }))
+            form.transform(transform)
                 .post(route('admin.blogs.update', editing.id), {
                     forceFormData: true,
                     onSuccess: () => closeModal(),
@@ -338,6 +346,19 @@ export default function Blogs({ items }) {
                                                         className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                                                     />
                                                     {form.errors.published_at ? <div className="mt-1 text-xs text-red-600">{form.errors.published_at}</div> : null}
+                                                </div>
+
+                                                <div>
+                                                    <label className="text-sm font-bold text-slate-900 dark:text-white">Sort Order</label>
+                                                    <input
+                                                        type="number"
+                                                        min="0"
+                                                        value={form.data.sort_order}
+                                                        onChange={(e) => form.setData('sort_order', e.target.value)}
+                                                        className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                                                        placeholder="0"
+                                                    />
+                                                    {form.errors.sort_order ? <div className="mt-1 text-xs text-red-600">{form.errors.sort_order}</div> : null}
                                                 </div>
 
                                                 <div>
